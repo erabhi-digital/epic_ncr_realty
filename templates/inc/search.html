@@ -1,0 +1,31 @@
+<div class="search-card container">
+  <div class="tabs">
+    <span class="active">Buy</span>
+    <span>Rent</span>
+    <span>Sell</span>
+  </div>
+
+  <form action="{% url 'properties' %}" method="get" class="search-grid">
+    <label>Location<input name="location" placeholder="City or area" /></label>
+
+    <label>
+      Property Type<select name="property_type">
+        <option value="">Any Type</option>
+
+        <option value="villa">Villa</option>
+
+        <option value="house">House</option>
+
+        <option value="apartment">Apartment</option>
+
+        <option value="office">Office</option>
+      </select>
+    </label>
+
+    <label>Min Price<input name="min_price" type="number" placeholder="Min Price" /></label>
+
+    <label>Max Price<input name="max_price" type="number" placeholder="Max Price" /></label>
+
+    <button class="btn btn-small" type="submit" style="padding: 12px 10px; !important">Search</button>
+  </form>
+</div>

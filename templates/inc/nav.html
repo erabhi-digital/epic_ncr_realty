@@ -1,0 +1,91 @@
+{% load static %}
+<header class="site-header">
+  <div class="container nav">
+    <!-- Logo -->
+    <a class="brand" href="{% url 'home' %}" style="display: flex; align-items: center; gap: 10px;">
+      <img src="{% static 'img/logo.png' %}" alt="Epic NCR Realty Logo" class="logo" width="40" height="40" style="object-fit: contain;" />
+      Epic Ncr<span>Realty</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-links">
+      <a href="{% url 'home' %}">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="{% url 'about' %}">
+        <i class="fa-regular fa-building"></i>
+        <span>About</span>
+      </a>
+
+      <a href="{% url 'properties' %}">
+        <i class="fa-solid fa-city"></i>
+        <span>Properties</span>
+      </a>
+
+      <a href="{% url 'blog' %}">
+        <i class="fa-regular fa-newspaper"></i>
+        <span>Blog</span>
+      </a>
+
+      <a href="{% url 'contact' %}">
+        <i class="fa-regular fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <!-- Desktop Contact Button -->
+    <a class="btn btn-small desktop-contact-btn" href="{% url 'contact' %}" style="padding-block:12px;">
+    <span style="padding-right:8px;">Inquire Now</span>
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu" id="mobileMenuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNavigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-navigation" id="mobileNavigation">
+    <nav>
+      <a href="{% url 'home' %}">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="{% url 'about' %}">
+        <i class="fa-regular fa-building"></i>
+        <span>About</span>
+      </a>
+
+      <a href="{% url 'properties' %}">
+        <i class="fa-solid fa-city"></i>
+        <span>Properties</span>
+      </a>
+
+      <a href="{% url 'blog' %}">
+        <i class="fa-regular fa-newspaper"></i>
+        <span>Blog</span>
+      </a>
+
+      <a href="{% url 'contact' %}">
+        <i class="fa-regular fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+
+      <!-- Mobile Contact Button -->
+      <a class="mobile-contact-button" href="{% url 'contact' %}">
+        <span>
+          <i class="fa-solid fa-phone"></i>
+          Contact Us
+        </span>
+
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ post.title }} | ModernEstate
+{% endblock %}
+{% block content %}
+  <div class="container article-wrap">
+    <span class="kicker">BLOG · {{ post.published_at|date:'M d, Y' }}</span><h1>{{ post.title }}</h1><p class="article-meta">By {{ post.author.name|default:'ModernEstate' }}</p>
+    <div class="article-image"></div>
+    <article class="article-content">{{ post.content|linebreaks }}</article>
+  </div>
+{% endblock %}

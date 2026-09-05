@@ -1,0 +1,148 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const messages = document.querySelectorAll(".message");
+
+    messages.forEach(function (message) {
+      // Start hiding after 4 seconds
+      setTimeout(function () {
+        message.classList.add("message-hide");
+
+        // Remove from DOM after animation
+        setTimeout(function () {
+          message.remove();
+        }, 400);
+      }, 4000);
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.getElementById("mobileMenuButton");
+    const mobileNavigation = document.getElementById("mobileNavigation");
+
+    if (!menuButton || !mobileNavigation) {
+      return;
+    }
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = mobileNavigation.classList.toggle("active");
+
+      menuButton.classList.toggle("active", isOpen);
+
+      menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu",
+      );
+    });
+
+    /* Close menu after clicking a link */
+
+    const mobileLinks = mobileNavigation.querySelectorAll("a");
+
+    mobileLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        mobileNavigation.classList.remove("active");
+        menuButton.classList.remove("active");
+
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open menu");
+      });
+    });
+
+    /* Close menu if screen becomes desktop */
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) {
+        mobileNavigation.classList.remove("active");
+        menuButton.classList.remove("active");
+
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+</script>
+
+<script>
+/* =====================================================
+   PROPERTIES PAGE — MOBILE FILTER TOGGLE
+   ===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filterBtn = document.getElementById("mobileFilterBtn");
+    const filterPanel = document.getElementById("mobileFilterPanel");
+    const filterClose = document.getElementById("filterClose");
+
+    if (filterBtn && filterPanel) {
+
+        filterBtn.addEventListener("click", function () {
+
+            const isOpen = filterPanel.classList.toggle("open");
+
+            filterBtn.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
+
+        });
+
+    }
+
+
+    /* Close filter */
+
+    if (filterClose && filterPanel) {
+
+        filterClose.addEventListener("click", function () {
+
+            filterPanel.classList.remove("open");
+
+            if (filterBtn) {
+                filterBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+        });
+
+    }
+
+
+    /* =================================================
+       MOBILE SORT
+       ================================================= */
+
+    const mobileSort = document.getElementById("mobileSort");
+
+    if (mobileSort) {
+
+        mobileSort.addEventListener("change", function () {
+            applySort(this.value);
+        });
+
+    }
+
+});
+
+
+/* =====================================================
+   SORT — KEEP EXISTING FILTERS
+   ===================================================== */
+
+function applySort(value) {
+
+    const params = new URLSearchParams(window.location.search);
+
+    params.set("sort", value);
+
+    /* Reset pagination when sorting */
+    params.delete("page");
+
+    window.location.href =
+        window.location.pathname + "?" + params.toString();
+}
+</script>

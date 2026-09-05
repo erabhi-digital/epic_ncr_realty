@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Contact Us | Epic NCR Realty
+{% endblock %}
+
+{% block content %}
+  <!--  =========================================================
+     CONTACT PAGE HERO
+=========================================================  -->
+  <section class="page-hero contact-hero">
+    <div class="container">
+      <span class="kicker">HOME · CONTACT</span>
+      <h1>Contact Us</h1>
+      <p>Let's find the right property for you.</p>
+    </div>
+  </section>
+
+  <!--  =========================================================
+     CONTACT SECTION
+=========================================================  -->
+  <section class="section container contact-grid">
+    <!-- LEFT SIDE — CONTACT INFORMATION -->
+    <div class="contact-left">
+      <span class="kicker">GET IN TOUCH</span>
+
+      <h2>We'd love to hear from you.</h2>
+
+      <p class="contact-intro">Tell us what you're looking for and our property experts will help you find the right residential, commercial or investment property for your needs.</p>
+
+      <!-- CONTACT INFORMATION -->
+      <div class="contact-info">
+        <!-- Phone -->
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+
+          <div>
+            <span>Call Us</span>
+            <strong><a href="tel:+918787200544">+91 8787200544</a></strong>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+
+          <div>
+            <span>Email Us</span>
+            <strong><a href="mailto:epicncrrealty@gmail.com">epicncrrealty@gmail.com</a></strong>
+          </div>
+        </div>
+
+        <!-- Website -->
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+
+          <div>
+            <span>Website</span>
+            <strong><a href="https://www.epicncrrealty.com/" target="_blank" rel="noopener">www.epicncrrealty.com</a></strong>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+
+          <div>
+            <span>Visit Us</span>
+            <strong>
+              F-145 5th Floor, Urbtech NPX,<br />
+              Sector 153, Noida 201310
+            </strong>
+          </div>
+        </div>
+
+        <!-- Director -->
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+
+          <div>
+            <span>Director</span>
+            <strong>Dilip Jaiswal</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  =======================================================
+       RIGHT SIDE — CONTACT FORM
+  ========================================================  -->
+    <div class="form-card contact-form-card">
+      <div class="form-header">
+        <span class="form-icon"><i class="fa-regular fa-paper-plane"></i></span>
+
+        <div>
+          <span class="kicker">SEND A MESSAGE</span>
+          <h3>Let's Talk About Your Property</h3>
+        </div>
+      </div>
+
+      <p class="form-description">Fill in the details below and one of our property specialists will contact you shortly.</p>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <!-- NAME + EMAIL -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">
+              <i class="fa-regular fa-user"></i>
+              Your Name
+            </label>
+
+            <input id="name" name="name" type="text" placeholder="Enter your name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              <i class="fa-regular fa-envelope"></i>
+              Your Email
+            </label>
+
+            <input id="email" type="email" name="email" placeholder="Enter your email" required />
+          </div>
+        </div>
+
+        <!-- PHONE + SUBJECT -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">
+              <i class="fa-solid fa-phone"></i>
+              Phone Number
+            </label>
+
+            <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">
+              <i class="fa-regular fa-bookmark"></i>
+              Subject
+            </label>
+
+            <input id="subject" name="subject" type="text" placeholder="What can we help you with?" required />
+          </div>
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="form-group">
+          <label for="message">
+            <i class="fa-regular fa-message"></i>
+            Your Message
+          </label>
+
+          <textarea id="message" name="message" placeholder="Tell us about the property you're looking for..." required></textarea>
+        </div>
+
+        <!-- SUBMIT -->
+        <button class="btn full contact-submit" type="submit">
+          Send Message
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <!-- SECURITY NOTE -->
+        <div class="form-note">
+          <i class="fa-solid fa-shield-halved"></i>
+          Your information is safe and will never be shared.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!--  =========================================================
+     LOCATION / MAP
+=========================================================  -->
+  <section class="map-placeholder contact-map">
+    <div class="map-overlay">
+      <div class="map-pin">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+
+      <h3>Visit Epic NCR Realty</h3>
+
+      <p>
+        F-145 5th Floor, Urbtech NPX,<br />
+        Sector 153, Noida 201310
+      </p>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href="{% url 'home' %}">Modern<span>Estate</span></a>
+
+      <p>Discover exceptional homes and properties designed for modern living.</p>
+
+      {% include "inc/social.html" %}
+    </div>
+
+    <div>
+      <h4>Quick Links</h4><a href="{% url 'about' %}">About Us</a><a href="{% url 'properties' %}">Properties</a><a href="{% url 'blog' %}">Blog</a><a href="{% url 'contact' %}">Contact</a>
+    </div>
+    <div>
+      <h4>Properties</h4><a href="{% url 'properties' %}?property_type=villa">Villas</a><a href="{% url 'properties' %}?property_type=apartment">Apartments</a><a href="{% url 'properties' %}?listing_type=sale">For Sale</a><a href="{% url 'properties' %}?listing_type=rent">For Rent</a>
+    </div>
+    <div>
+      <h4>Newsletter</h4><p>Get new property updates.</p>
+      <form class="newsletter" method="post" action="{% url 'subscribe_newsletter' %}">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Your email" required /><button class="btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>©{% now 'Y' %}ModernEstate. All rights reserved.</span>
+    <span>
+      <span onclick="window.location.href='/privacy/'" style="cursor: pointer;">Privacy</span>
+      ·<span onclick="window.location.href='/terms/'" style="cursor: pointer;">Terms</span>
+    </span>
+  </div>
+</footer>

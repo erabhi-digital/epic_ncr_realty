@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  About Us | ModernEstate
+{% endblock %}
+
+{% block content %}
+  <!--    =====================================================
+     PAGE HERO
+=====================================================    -->
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="kicker">HOME · ABOUT</span>
+
+      <h1>About Us</h1>
+
+      <p>We help people find spaces worth calling home.</p>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     OUR STORY
+=====================================================    -->
+
+  <section class="section container split-section">
+    <div>
+      <span class="kicker">OUR STORY</span>
+
+      <h2>Built around people, not just properties.</h2>
+
+      <p>ModernEstate began with a simple idea: finding a home should feel exciting, personal and straightforward — not complicated.</p>
+
+      <p>Over the years, we have built a carefully selected portfolio of residential and commercial properties while developing strong relationships with buyers, sellers, investors and families.</p>
+
+      <p>Today, ModernEstate combines local market knowledge, modern technology and personal service to help our clients make confident property decisions.</p>
+
+      <a class="btn" href="{% url 'properties' %}">Explore Properties</a>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder interior-photo"></div>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     VISION & MISSION
+=====================================================    -->
+
+  <section class="section light-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="kicker">OUR PURPOSE</span>
+
+          <h2>What drives us</h2>
+        </div>
+      </div>
+
+      <div class="purpose-grid">
+        <!-- VISION -->
+
+        <article class="purpose-card">
+          <div class="purpose-number">01</div>
+
+          <div>
+            <span class="kicker">OUR VISION</span>
+
+            <h3>Making better places to live accessible to everyone.</h3>
+
+            <p>We envision a real-estate experience where quality properties, trustworthy information and professional guidance are accessible to every person looking for their next home or investment.</p>
+          </div>
+        </article>
+
+        <!-- MISSION -->
+
+        <article class="purpose-card">
+          <div class="purpose-number">02</div>
+
+          <div>
+            <span class="kicker">OUR MISSION</span>
+
+            <h3>Simplifying every property journey.</h3>
+
+            <p>Our mission is to connect people with the right properties through transparent information, thoughtful service, market expertise and technology that makes every step easier.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     STATS
+=====================================================    -->
+
+  <section class="dark-strip">
+    <div class="container stats">
+      <div>
+        <strong>12+</strong>
+
+        <span>Years Experience</span>
+      </div>
+
+      <div>
+        <strong>850+</strong>
+
+        <span>Properties Sold</span>
+      </div>
+
+      <div>
+        <strong>2K+</strong>
+
+        <span>Happy Clients</span>
+      </div>
+
+      <div>
+        <strong>28</strong>
+
+        <span>Awards Won</span>
+      </div>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     WHY MODERNESTATE
+=====================================================    -->
+
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">WHY MODERNESTATE</span>
+
+        <h2>More than a property platform.</h2>
+      </div>
+    </div>
+
+    <div class="about-features">
+      <article class="about-feature">
+        <div class="feature-icon">01</div>
+
+        <h3>Local Expertise</h3>
+
+        <p>Our knowledge of local markets helps clients discover properties in locations that match their lifestyle and goals.</p>
+      </article>
+
+      <article class="about-feature">
+        <div class="feature-icon">02</div>
+
+        <h3>Trusted Guidance</h3>
+
+        <p>We believe in clear communication and honest guidance from the first conversation to the final transaction.</p>
+      </article>
+
+      <article class="about-feature">
+        <div class="feature-icon">03</div>
+
+        <h3>Carefully Selected</h3>
+
+        <p>We focus on presenting quality properties with useful information so clients can make better decisions.</p>
+      </article>
+
+      <article class="about-feature">
+        <div class="feature-icon">04</div>
+
+        <h3>Client First</h3>
+
+        <p>Every client has different needs. Our approach is personal, responsive and focused on long-term relationships.</p>
+      </article>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     OUR TEAM
+=====================================================    -->
+
+  <section class="section light-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="kicker">OUR TEAM</span>
+
+          <h2>Meet Our Team</h2>
+        </div>
+
+        <a class="text-link" href="{% url 'contact' %}">Talk to Our Team →</a>
+      </div>
+
+      <div class="team-grid">
+        {% for agent in agents %}
+          {% if agent.is_active %}
+            <article class="team-card">
+              <!-- PHOTO -->
+              <div class="avatar">
+                {% if agent.photo %}
+                  <img src="{{ agent.photo.url }}" alt="{{ agent.name }}" loading="lazy" />
+                {% else %}
+                  <span>{{ agent.name|first|upper }}</span>
+                {% endif %}
+              </div>
+
+              <!-- AGENT CONTENT -->
+              <div class="team-content">
+                <div class="team-heading">
+                  <div>
+                    <h3>{{ agent.name }}</h3>
+
+                    {% if agent.role %}
+                      <p class="agent-role">{{ agent.role }}</p>
+                    {% endif %}
+                  </div>
+
+                  <span class="agent-number">
+                    {% if forloop.counter < 10 %}
+                      0{{ forloop.counter }}
+                    {% else %}
+                      {{ forloop.counter }}
+                    {% endif %}
+                  </span>
+                </div>
+
+                {% if agent.bio %}
+                  {% comment %} <p class="agent-bio">{{ agent.bio }}</p> {% endcomment %}
+                {% endif %}
+
+                <div class="agent-contact">
+                  {% if agent.phone %}
+                    <a href="tel:{{ agent.phone }}" class="contact-item">
+                      <span class="contact-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M6.6 2.8 9.2 2c.7-.2 1.4.2 1.7.9l1.2 3c.2.6 0 1.3-.5 1.6L10 8.8c1.1 2.3 2.9 4.1 5.2 5.2l1.3-1.6c.4-.5 1-.7 1.6-.5l3 1.2c.7.3 1.1 1 .9 1.7l-.8 2.6c-.2.7-.9 1.2-1.6 1.2C10.4 18.6 5.4 13.6 5.4 6.4c0-.7.5-1.4 1.2-1.6Z" />
+                        </svg>
+                      </span>
+                      <span>{{ agent.phone }}</span>
+                    </a>
+                  {% endif %}
+
+                  {% if agent.email %}
+                    <a href="mailto:{{ agent.email }}" class="contact-item">
+                      <span class="contact-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 5.5h18v13H3v-13Zm1.8 1.8 7.2 5.1 7.2-5.1M4.8 16.7l5-4.3m9.4 4.3-5-4.3" />
+                        </svg>
+                      </span>
+                      <span>{{ agent.email }}</span>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+          {% endif %}
+        {% empty %}
+          <p>Add agents from Django Admin.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!--    =====================================================
+     FINAL CTA
+=====================================================    -->
+
+  <section class="cta-section">
+    <div class="container cta-content">
+      <span class="kicker">LET'S FIND YOUR PLACE</span>
+
+      <h2>Your next chapter starts with the right home.</h2>
+
+      <p>Explore our properties or speak with our team about what you're looking for.</p>
+
+      <a class="btn" href="{% url 'properties' %}">Explore Properties</a>
+    </div>
+  </section>
+{% endblock %}

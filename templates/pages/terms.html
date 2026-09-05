@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Terms & Conditions | ModernEstate
+{% endblock %}
+
+{% block content %}
+  <!-- Page Hero -->
+  <section class="page-hero legal-hero">
+    <div class="container">
+      <span class="kicker">HOME · LEGAL</span>
+      <h1>Terms & Conditions</h1>
+      <p>Last updated: May 15, 2026</p>
+    </div>
+  </section>
+
+  <!-- Legal Content -->
+  <section class="section container legal-page">
+    <div class="legal-layout">
+      <!-- Sidebar -->
+      <aside class="legal-sidebar">
+        <div class="legal-sidebar-card">
+          <div class="legal-sidebar-icon">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+
+          <h3>Legal Information</h3>
+
+          <p>Please read these terms carefully before using the ModernEstate website.</p>
+
+          <nav class="legal-nav">
+            <a href="#introduction">Introduction</a>
+            <a href="#website-use">Use of Website</a>
+            <a href="#property-information">Property Information</a>
+            <a href="#transactions">Transactions</a>
+            <a href="#liability">Limitation of Liability</a>
+            <a href="#changes">Changes to Terms</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <article class="legal-content">
+        <div class="legal-intro">
+          <span class="legal-label">
+            <i class="fa-solid fa-file-contract"></i>
+            TERMS & CONDITIONS
+          </span>
+
+          <h2>Please read these terms carefully.</h2>
+
+          <p>These Terms & Conditions explain the rules and guidelines governing your use of the ModernEstate website and services.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <section id="introduction" class="legal-section">
+          <div class="legal-number">01</div>
+
+          <div>
+            <h3>Introduction</h3>
+
+            <p>Welcome to ModernEstate. By accessing or using our website, you agree to comply with and be bound by these Terms & Conditions.</p>
+
+            <p>If you do not agree with any part of these terms, please discontinue use of the website.</p>
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="website-use" class="legal-section">
+          <div class="legal-number">02</div>
+
+          <div>
+            <h3>Use of Website</h3>
+
+            <p>The ModernEstate website is provided for general property discovery, information and communication purposes.</p>
+
+            <ul class="legal-list">
+              <li>Use the website only for lawful purposes.</li>
+              <li>Do not attempt to disrupt or damage the website.</li>
+              <li>Do not submit false or misleading information.</li>
+              <li>Do not misuse property listings or website content.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="property-information" class="legal-section">
+          <div class="legal-number">03</div>
+
+          <div>
+            <h3>Property Information</h3>
+
+            <p>We make reasonable efforts to keep property listings accurate and current. However, property information may change without notice.</p>
+
+            <div class="legal-notice">
+              <i class="fa-solid fa-circle-info"></i>
+
+              <p>Prices, availability, images, dimensions, specifications and other property details should always be confirmed with our team before making any decision or transaction.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="transactions" class="legal-section">
+          <div class="legal-number">04</div>
+
+          <div>
+            <h3>Property Transactions</h3>
+
+            <p>ModernEstate may provide property discovery and communication services, but the final terms of any property transaction must be independently verified by the parties involved.</p>
+
+            <p>Users are responsible for conducting appropriate due diligence, document verification and legal checks before entering into a property transaction.</p>
+          </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="liability" class="legal-section">
+          <div class="legal-number">05</div>
+
+          <div>
+            <h3>Limitation of Liability</h3>
+
+            <p>ModernEstate shall not be responsible for indirect, incidental or consequential losses arising from reliance on information available through the website.</p>
+
+            <p>Users should independently verify important property, financial and legal information before taking action.</p>
+          </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="changes" class="legal-section">
+          <div class="legal-number">06</div>
+
+          <div>
+            <h3>Changes to These Terms</h3>
+
+            <p>We may update these Terms & Conditions from time to time to reflect changes to our services, website or applicable requirements.</p>
+
+            <p>Updated terms will be published on this page along with the revised "Last updated" date.</p>
+          </div>
+        </section>
+
+        <!-- Contact Box -->
+        <div class="legal-contact-box">
+          <div>
+            <span class="kicker">HAVE QUESTIONS?</span>
+
+            <h3>Need clarification about our terms?</h3>
+
+            <p>Our team is happy to help with any questions.</p>
+          </div>
+
+          <a href="{% url 'contact' %}" class="btn">
+            Contact Us
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+{% endblock %}

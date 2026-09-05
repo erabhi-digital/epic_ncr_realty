@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Privacy Policy | ModernEstate
+{% endblock %}
+
+{% block content %}
+  <!-- Page Hero -->
+  <section class="page-hero legal-hero privacy-hero">
+    <div class="container">
+      <span class="kicker">HOME · PRIVACY</span>
+
+      <h1>Privacy Policy</h1>
+
+      <p>Last updated: May 15, 2026</p>
+    </div>
+  </section>
+
+  <!-- Privacy Content -->
+  <section class="section container legal-page">
+    <div class="legal-layout">
+      <!-- Sidebar -->
+      <aside class="legal-sidebar">
+        <div class="legal-sidebar-card">
+          <div class="legal-sidebar-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <h3>Your Privacy Matters</h3>
+
+          <p>This policy explains how ModernEstate collects, uses and protects your information.</p>
+
+          <nav class="legal-nav">
+            <a href="#overview">Overview</a>
+            <a href="#information">Information We Collect</a>
+            <a href="#use">How We Use Information</a>
+            <a href="#sharing">Information Sharing</a>
+            <a href="#security">Data Security</a>
+            <a href="#cookies">Cookies</a>
+            <a href="#rights">Your Rights</a>
+            <a href="#changes">Policy Changes</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <article class="legal-content">
+        <!-- Intro -->
+        <div class="legal-intro" id="overview">
+          <span class="legal-label">
+            <i class="fa-solid fa-shield-halved"></i>
+            PRIVACY POLICY
+          </span>
+
+          <h2>We respect your privacy.</h2>
+
+          <p>ModernEstate is committed to protecting your personal information and being transparent about how we use it.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <section id="information" class="legal-section">
+          <div class="legal-number">01</div>
+
+          <div>
+            <h3>Information We Collect</h3>
+
+            <p>When you interact with ModernEstate, we may collect information that you voluntarily provide to us.</p>
+
+            <ul class="legal-list">
+              <li>Your name and contact details.</li>
+              <li>Email address and phone number.</li>
+              <li>Property preferences and requirements.</li>
+              <li>Messages and enquiries submitted through our website.</li>
+              <li>Information required to respond to your requests.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="use" class="legal-section">
+          <div class="legal-number">02</div>
+
+          <div>
+            <h3>How We Use Your Information</h3>
+
+            <p>We use collected information primarily to provide better property discovery and communication services.</p>
+
+            <ul class="legal-list">
+              <li>Respond to property enquiries.</li>
+              <li>Contact you regarding your property requirements.</li>
+              <li>Improve our website and services.</li>
+              <li>Provide relevant property information.</li>
+              <li>Send requested updates or communications.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="sharing" class="legal-section">
+          <div class="legal-number">03</div>
+
+          <div>
+            <h3>Information Sharing</h3>
+
+            <p>We do not sell your personal information to third parties.</p>
+
+            <p>Information may be shared only when reasonably necessary to provide requested services, comply with applicable law, protect our rights, or respond to legitimate requests.</p>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="security" class="legal-section">
+          <div class="legal-number">04</div>
+
+          <div>
+            <h3>Data Security</h3>
+
+            <p>We take reasonable measures to protect information submitted through our website against unauthorized access, misuse or disclosure.</p>
+
+            <div class="legal-notice">
+              <i class="fa-solid fa-lock"></i>
+
+              <p>While we take appropriate precautions, no internet transmission or electronic storage system can be guaranteed to be completely secure.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="cookies" class="legal-section">
+          <div class="legal-number">05</div>
+
+          <div>
+            <h3>Cookies & Website Analytics</h3>
+
+            <p>Our website may use cookies or similar technologies to improve functionality, understand website usage and provide a better user experience.</p>
+
+            <p>You may be able to control cookies through your browser settings.</p>
+          </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="rights" class="legal-section">
+          <div class="legal-number">06</div>
+
+          <div>
+            <h3>Your Rights</h3>
+
+            <p>Depending on applicable law, you may have rights regarding the personal information we hold about you.</p>
+
+            <ul class="legal-list">
+              <li>Request information about your personal data.</li>
+              <li>Request correction of inaccurate information.</li>
+              <li>Request deletion where legally applicable.</li>
+              <li>Withdraw certain communications or preferences.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="changes" class="legal-section">
+          <div class="legal-number">07</div>
+
+          <div>
+            <h3>Changes to This Privacy Policy</h3>
+
+            <p>We may update this Privacy Policy periodically. Changes will be published on this page with an updated revision date.</p>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <div class="legal-contact-box">
+          <div>
+            <span class="kicker">PRIVACY QUESTIONS?</span>
+
+            <h3>Want to know more about your information?</h3>
+
+            <p>Contact our team and we'll be happy to assist you.</p>
+          </div>
+
+          <a href="{% url 'contact' %}" class="btn">
+            Contact Us
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+{% endblock %}

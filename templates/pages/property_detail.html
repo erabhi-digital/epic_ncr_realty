@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ property.title }} | ModernEstate
+{% endblock %}
+{% block content %}
+  <div class="container breadcrumb">Home · Properties · {{ property.title }}</div>
+  <section class="section container detail">
+    <div class="detail-head">
+      <div>
+        <span class="kicker">{{ property.property_type|upper }} · {{ property.listing_type|upper }}</span><h1>{{ property.title }}</h1><p>⌖ {{ property.address }}, {{ property.city }}</p>
+      </div>
+      <div class="price">
+        ₹{{ property.price|floatformat:0 }}<small>{% if property.listing_type == 'rent' %} / month{% endif %}</small>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="gallery-main"></div>
+      <div class="gallery-side">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <div class="facts">
+          <span><b>{{ property.bedrooms }}</b> Bedrooms</span><span><b>{{ property.bathrooms|floatformat:'-1' }}</b> Bathrooms</span><span><b>{{ property.area_sqft }}</b> Sq Ft</span>
+        </div><h2>About This Property</h2><p>{{ property.description|linebreaks }}</p><h3>Features</h3><div class="feature-list">
+          <span>✓ Swimming Pool</span><span>✓ Modern Kitchen</span><span>✓ Home Theater</span><span>✓ Smart Home</span><span>✓ Security System</span>
+        </div>
+      </div>
+      <aside class="visit-card">
+        <h3>Schedule a Visit</h3><form method="post" action="{% url 'contact' %}">
+          {% csrf_token %}
+          <input name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input name="phone" placeholder="Your Phone" />
+          <input name="subject" value="Visit: {{ property.title }}" />
+          <textarea name="message" placeholder="Message" required></textarea>
+          <input type="hidden" name="property_id" value="{{ property.id }}" /><button class="btn full">Send Request</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+{% endblock %}

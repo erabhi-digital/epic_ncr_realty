@@ -1,0 +1,77 @@
+<!--   =========================================
+     PROPERTIES PAGE — MOBILE FILTER TOOLBAR
+     =========================================   -->
+
+<div class="mobile-filter-toolbar">
+  <!-- Filter Button -->
+  <button type="button" class="mobile-filter-btn" id="mobileFilterBtn" aria-expanded="false" aria-controls="mobileFilterPanel">
+    <i class="fa-solid fa-sliders"></i>
+    <span>Filter</span>
+  </button>
+
+  <!-- Sort By -->
+  <div class="mobile-sort">
+    <i class="fa-solid fa-arrow-down-wide-short"></i>
+
+    <select id="mobileSort" aria-label="Sort properties">
+      <option value="newest">Newest</option>
+      <option value="price_low">Price Low</option>
+      <option value="price_high">Price High</option>
+    </select>
+  </div>
+</div>
+
+<!--   =========================================
+     PROPERTIES PAGE — FILTER SIDEBAR
+     =========================================   -->
+
+<aside class="filter-panel" id="mobileFilterPanel">
+  <div class="filter-panel-header">
+    <h3>Filter Properties</h3>
+
+    <!-- Mobile Close Button -->
+    <button type="button" class="filter-close" id="filterClose" aria-label="Close filters"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <form method="get">
+    <!-- Location -->
+    <label>Location<input name="location" value="{{ filters.location }}" placeholder="Select location" /></label>
+
+    <!-- Property Type -->
+    <label>
+      Property Type<select name="property_type">
+        <option value="">Any</option>
+        <option value="villa">Villa</option>
+        <option value="house">House</option>
+        <option value="apartment">Apartment</option>
+        <option value="office">Office</option>
+        <option value="land">Land</option>
+        <option value="other">Other</option>
+      </select>
+    </label>
+
+    <!-- Listing Type -->
+    <label>
+      Listing Type<select name="listing_type">
+        <option value="">Buy or Rent</option>
+        <option value="sale">For Sale</option>
+        <option value="rent">For Rent</option>
+      </select>
+    </label>
+
+    <!-- Minimum Price -->
+    <label>Min Price<input type="number" name="min_price" value="{{ filters.min_price }}" placeholder="Min price" /></label>
+
+    <!-- Maximum Price -->
+    <label>Max Price<input type="number" name="max_price" value="{{ filters.max_price }}" placeholder="Max price" /></label>
+
+    <!-- Bedrooms -->
+    <label>Bedrooms<input type="number" min="0" name="bedrooms" value="{{ filters.bedrooms }}" placeholder="Bedrooms" /></label>
+
+    <!-- Apply Filters -->
+    <button class="btn full" type="submit">Apply Filters</button>
+
+    <!-- Reset -->
+    <a class="reset" href="{% url 'properties' %}">Reset</a>
+  </form>
+</aside>

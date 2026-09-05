@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home | ModernEstate
+{% endblock %}
+
+{% block content %}
+  <!--   =====================================================
+     HERO
+=====================================================   -->
+
+  <section class="hero hero-home">
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <p class="eyebrow">MODERN LIVING · EXCEPTIONAL HOMES</p>
+
+      <h1>
+        Find Your<br />
+        <em>Dream Home</em>
+      </h1>
+
+      <p class="hero-copy">Discover modern properties in prime locations that are built for your lifestyle.</p>
+    </div>
+
+    <!-- SEARCH -->
+
+  </section>
+
+  <!--   =====================================================
+     FEATURED PROPERTIES
+=====================================================   -->
+
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">FEATURED</span>
+
+        <h2>Featured Properties</h2>
+      </div>
+
+      <a class="text-link" href="{% url 'properties' %}">View All Properties →</a>
+    </div>
+
+    <div class="property-grid">
+      {% for property in featured_properties %}
+        {% include 'partials/property_card.html' with property=property %}
+      {% empty %}
+        <p>No featured properties available.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!--   =====================================================
+     STATS
+=====================================================   -->
+
+  <section class="dark-strip">
+    <div class="container stats">
+      <div>
+        <strong>12+</strong>
+        <span>Years Experience</span>
+      </div>
+
+      <div>
+        <strong>850+</strong>
+        <span>Properties Sold</span>
+      </div>
+
+      <div>
+        <strong>2K+</strong>
+        <span>Happy Clients</span>
+      </div>
+
+      <div>
+        <strong>28</strong>
+        <span>Awards Won</span>
+      </div>
+    </div>
+  </section>
+
+  <!--   =====================================================
+     WHY CHOOSE US
+=====================================================   -->
+
+  <section class="section container split-section">
+    <div>
+      <span class="kicker">WHY CHOOSE US</span>
+
+      <h2>Homes that feel like yours.</h2>
+
+      <p>From the first viewing to the final signature, our team makes property buying and selling clear, personal and stress-free.</p>
+
+      <ul class="check-list">
+        <li>Trusted by growing families</li>
+
+        <li>Personalized property search</li>
+
+        <li>Verified property listings</li>
+
+        <li>Expert local market knowledge</li>
+
+        <li>24/7 customer support</li>
+      </ul>
+
+      <a class="btn" href="{% url 'about' %}">Learn More</a>
+    </div>
+
+    <div class="image-card">
+      <div class="image-placeholder house-photo"></div>
+    </div>
+  </section>
+
+  <!--   =====================================================
+     TESTIMONIALS
+=====================================================   -->
+
+  <section class="section light-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="kicker">TESTIMONIALS</span>
+
+          <h2>What Our Clients Say</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-grid">
+        <!-- TESTIMONIAL 1 -->
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+
+          <p class="testimonial-text">“ModernEstate made finding our new home incredibly easy. The team understood exactly what we were looking for and guided us through every step.”</p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AS</div>
+
+            <div>
+              <strong>Ankit Sharma</strong>
+
+              <span>Home Buyer</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TESTIMONIAL 2 -->
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+
+          <p class="testimonial-text">“Professional, responsive and transparent. We sold our property much faster than expected and received excellent support throughout.”</p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PK</div>
+
+            <div>
+              <strong>Priya Kapoor</strong>
+
+              <span>Property Seller</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TESTIMONIAL 3 -->
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+
+          <p class="testimonial-text">“The property recommendations were excellent. I found a beautiful apartment in exactly the location and budget I wanted.”</p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RV</div>
+
+            <div>
+              <strong>Rahul Verma</strong>
+
+              <span>Home Buyer</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!--   =====================================================
+     FAQ
+=====================================================   -->
+
+  <section class="section container faq-section">
+    <div class="section-head">
+      <div>
+        <span class="kicker">FAQ</span>
+
+        <h2>Frequently Asked Questions</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>
+          How do I schedule a property visit?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>You can schedule a property visit from the property detail page or contact our team directly. We'll arrange a convenient time for you.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Are all properties verified?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>We carefully review property information before publishing listings. However, final property details should always be confirmed with our team before making a transaction.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Can you help me find a property within my budget?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>Absolutely. Use our property search filters or contact us with your preferred location, property type and budget. Our team can help narrow down suitable options.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Do you handle property rentals?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>Yes. ModernEstate offers both properties for sale and properties available for rent.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Can I list my property with ModernEstate?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>Yes. Contact our team with your property details and we'll guide you through the listing process.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          How can I contact your property experts?
+          <span>+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>Visit our Contact page, send us a message or schedule a visit through one of our property listings.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!--   =====================================================
+     BLOG
+=====================================================   -->
+
+  <section class="section light-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="kicker">INSIGHTS</span>
+
+          <h2>From Our Blog</h2>
+        </div>
+
+        <a class="text-link" href="{% url 'blog' %}">View All →</a>
+      </div>
+
+      <div class="blog-grid">
+        {% for post in latest_posts %}
+          <article class="blog-card">
+            <div class="blog-image"></div>
+
+            <div class="blog-body">
+              <small>{{ post.published_at|date:'M d, Y' }}</small>
+
+              <h3>{{ post.title }}</h3>
+
+              <p>{{ post.excerpt|truncatewords:18 }}</p>
+
+              <a href="{{ post.get_absolute_url }}">Read More →</a>
+            </div>
+          </article>
+        {% empty %}
+          <p>No blog posts available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!--   =====================================================
+     FINAL CTA
+=====================================================   -->
+
+  <section class="cta-section">
+    <div class="container cta-content">
+      <span class="kicker">READY TO MOVE?</span>
+
+      <h2>Your next chapter starts here.</h2>
+
+      <p>Let our property experts help you find a place you'll be proud to call home.</p>
+
+      <a class="btn" href="{% url 'properties' %}">Explore Properties</a>
+    </div>
+  </section>
+{% endblock %}

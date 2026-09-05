@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+  Properties | ModernEstate
+{% endblock %}
+{% block content %}
+  <section class="page-hero">
+    <div class="container">
+      <span class="kicker">HOME · PROPERTIES</span><h1>Properties</h1><p>Find a place that fits the way you live.</p>
+    </div>
+  </section>
+  <section class="section container properties-layout">
+    {% include 'inc/filter.html' %}
+    <div>
+      <div class="results-bar">
+        <span>Showing {{ page_obj.paginator.count }} properties</span><select onchange="location.href='?sort='+this.value">
+          <option value="newest">Newest</option>
+          <option value="price_low">Price Low</option>
+          <option value="price_high">Price High</option>
+        </select>
+      </div>
+      <div class="property-grid">
+        {% for property in properties %}
+          {% include 'partials/property_card.html' with property=property %}
+        {% empty %}
+          <p>No properties match your filters.</p>
+        {% endfor %}
+      </div>
+      {% if page_obj.has_other_pages %}
+        <div class="pagination">
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">←</a>
+          {% endif %}<span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>{% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">→</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

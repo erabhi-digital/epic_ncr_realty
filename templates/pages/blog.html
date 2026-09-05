@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+  Blog | ModernEstate
+{% endblock %}
+{% block content %}
+  <section class="page-hero">
+    <div class="container">
+      <span class="kicker">HOME · BLOG</span><h1>Our Blog</h1><p>Market insights, buying guides and modern home ideas.</p>
+    </div>
+  </section>
+  <section class="section container">
+    <div class="blog-grid large">
+      {% for post in posts %}
+        <article class="blog-card">
+          <div class="blog-image"></div>
+          <div class="blog-body">
+            <small>{{ post.published_at|date:'M d, Y' }}</small><h3>{{ post.title }}</h3><p>{{ post.excerpt|truncatewords:28 }}</p><a href="{{ post.get_absolute_url }}">Read More →</a>
+          </div>
+        </article>
+      {% empty %}
+        <p>No posts published yet.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

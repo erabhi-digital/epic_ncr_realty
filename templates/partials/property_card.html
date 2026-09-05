@@ -1,0 +1,4 @@
+<article class="property-card">
+  <a href="{{ property.get_absolute_url }}"><div class="property-image"><span class="tag">{{ property.get_listing_type_display }}</span><span class="heart">♡</span></div></a>
+  <div class="property-body"><div class="property-type">{{ property.get_property_type_display }}</div><h3><a href="{{ property.get_absolute_url }}">{{ property.title }}</a></h3><p class="location">⌖ {{ property.city }}{% if property.state %}, {{ property.state }}{% endif %}</p><div class="property-meta"><span>{{ property.bedrooms }} Beds</span><span>{{ property.bathrooms|floatformat:"-1" }} Baths</span><span>{{ property.area_sqft }} Sq Ft</span></div><strong class="card-price">₹{{ property.price|floatformat:0 }}</strong></div>
+</article>

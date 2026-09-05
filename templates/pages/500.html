@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Something Went Wrong | ModernEstate{% endblock %}
+{% block content %}
+<section class="error-page container"><div class="error-number">500</div><h1>Something went wrong</h1><p>Please try again in a moment.</p><a class="btn" href="{% url 'home' %}">Go Home</a></section>
+{% endblock %}
