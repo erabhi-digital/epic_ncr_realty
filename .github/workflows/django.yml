@@ -24,6 +24,9 @@ jobs:
             cd /home/erabhidigital/epic_ncr_realty
 
             git pull origin main
+            pip install -r requirements.txt
+
+
 
       - name: Reload web app via PythonAnywhere API
         run: |
