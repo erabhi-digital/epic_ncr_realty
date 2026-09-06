@@ -38,7 +38,7 @@ def _published_properties():
     )
 
 
-@cache_page(60 * 5)
+# @cache_page(60 * 5)
 def home(request):
     try:
         featured = list(
@@ -83,14 +83,14 @@ def home(request):
         return render(request, "errors/500.html", status=500)
 
 
-@cache_page(60 * 10)
+# @cache_page(60 * 10)
 def about(request):
     agents = Agent.objects.filter(is_active=True).only(
         "id", "name", "slug", "role", "photo", "bio", "email", "phone"
     )[:8]
     return render(request, "pages/about.html", {"agents": agents})
 
-
+# @cache_page(60 * 5)
 def properties(request):
     try:
         qs = _published_properties().only(
@@ -175,23 +175,37 @@ def property_detail(request, slug):
         return render(request, "errors/500.html", status=500)
 
 
-@cache_page(60 * 5)
+
+# @cache_page(60 * 5)
 def blog(request):
     posts = (
         BlogPost.objects
         .filter(is_published=True)
         .select_related("author")
         .only(
-            "id", "title", "slug", "excerpt", "cover_image",
-            "published_at", "author_id", "author__name",
+            "id",
+            "title",
+            "slug",
+            "excerpt",
+            "cover_image",
+            "published_at",
+            "author_id",
+            "author__name",
         )
+        .order_by("-published_at", "-id")
     )
+
     paginator = Paginator(posts, 9)
     page_obj = paginator.get_page(request.GET.get("page"))
-    return render(request, "pages/blog.html", {
-        "page_obj": page_obj,
-        "posts": page_obj.object_list,
-    })
+
+    return render(
+        request,
+        "pages/blog.html",
+        {
+            "page_obj": page_obj,
+            "posts": page_obj.object_list,
+        },
+    )
 
 
 def blog_detail(request, slug):
@@ -275,3 +289,11 @@ def terms(request):
 
 def privacy(request):
     return render(request, "pages/privacy.html")
+
+
+def error_404(request, exception):
+    return render(request, "pages/404.html", status=404)
+
+
+def error_500(request):
+    return render(request, "pages/500.html", status=500)

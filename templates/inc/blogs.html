@@ -1,0 +1,23 @@
+<section class="section light-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">INSIGHTS</span>
+        <h2>From Our Blog</h2>
+      </div>
+
+      <a class="text-link" href="{% url 'blog' %}">View All <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="blog-grid">
+      {% for post in latest_posts %}
+         {% include "partials/blog_card.html" %}
+      {% empty %}
+        <div class="empty-state">
+          <i class="fa-regular fa-newspaper"></i>
+          <p>No blog posts available.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

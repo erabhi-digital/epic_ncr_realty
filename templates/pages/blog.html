@@ -11,12 +11,7 @@
   <section class="section container">
     <div class="blog-grid large">
       {% for post in posts %}
-        <article class="blog-card">
-          <div class="blog-image"></div>
-          <div class="blog-body">
-            <small>{{ post.published_at|date:'M d, Y' }}</small><h3>{{ post.title }}</h3><p>{{ post.excerpt|truncatewords:28 }}</p><a href="{{ post.get_absolute_url }}">Read More →</a>
-          </div>
-        </article>
+        {% include "partials/blog_card.html" %}
       {% empty %}
         <p>No posts published yet.</p>
       {% endfor %}

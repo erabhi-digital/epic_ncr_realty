@@ -37,3 +37,6 @@ urlpatterns = [
         name="subscribe_newsletter",
     ),
 ]
+
+
+

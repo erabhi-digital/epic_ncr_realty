@@ -1,11 +1,55 @@
 {% extends 'base.html' %}
+
 {% block title %}
   {{ post.title }} | ModernEstate
 {% endblock %}
+
 {% block content %}
   <div class="container article-wrap">
-    <span class="kicker">BLOG · {{ post.published_at|date:'M d, Y' }}</span><h1>{{ post.title }}</h1><p class="article-meta">By {{ post.author.name|default:'ModernEstate' }}</p>
-    <div class="article-image"></div>
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-kicker">
+        <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+        <span>BLOG</span>
+
+        <span class="article-divider">·</span>
+
+        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+        <span>{{ post.published_at|date:'M d, Y' }}</span>
+      </div>
+
+      <h1>{{ post.title }}</h1>
+
+      <div class="article-meta">
+        <i class="fa-regular fa-user" aria-hidden="true"></i>
+
+        <span>
+          By
+          {{ post.author.name|default:'ModernEstate' }}
+        </span>
+      </div>
+    </header>
+
+    <!-- Featured Image / Icon -->
+    <div class="article-image">
+      {% if post.cover_image %}
+        <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" loading="eager" />
+      {% else %}
+        <div class="article-image-placeholder">
+          <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Article Content -->
     <article class="article-content">{{ post.content|linebreaks }}</article>
+
+    <!-- Back to Blog -->
+    <div class="article-footer">
+      <a href="{% url 'blog' %}" class="text-link">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        Back to Blog
+      </a>
+    </div>
   </div>
 {% endblock %}

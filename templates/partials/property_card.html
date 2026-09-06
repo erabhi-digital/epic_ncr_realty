@@ -1,4 +1,60 @@
 <article class="property-card">
-  <a href="{{ property.get_absolute_url }}"><div class="property-image"><span class="tag">{{ property.get_listing_type_display }}</span><span class="heart">♡</span></div></a>
-  <div class="property-body"><div class="property-type">{{ property.get_property_type_display }}</div><h3><a href="{{ property.get_absolute_url }}">{{ property.title }}</a></h3><p class="location">⌖ {{ property.city }}{% if property.state %}, {{ property.state }}{% endif %}</p><div class="property-meta"><span>{{ property.bedrooms }} Beds</span><span>{{ property.bathrooms|floatformat:"-1" }} Baths</span><span>{{ property.area_sqft }} Sq Ft</span></div><strong class="card-price">₹{{ property.price|floatformat:0 }}</strong></div>
+  <!-- Property Image -->
+  <a href="{{ property.get_absolute_url }}">
+    <div class="property-image">
+      {% if property.cached_images %}
+        <img src="{{ property.cached_images.0.image.url }}" alt="{{ property.cached_images.0.alt_text|default:property.title }}" />
+      {% endif %}
+
+      <span class="tag">
+        <i class="fa-solid fa-tag"></i>
+        {{ property.get_listing_type_display }}
+      </span>
+
+      <span class="heart" aria-label="Save property"><i class="fa-regular fa-heart"></i></span>
+    </div>
+  </a>
+
+  <!-- Property Details -->
+  <div class="property-body">
+    <div class="property-type">
+      <i class="fa-solid fa-building"></i>
+      {{ property.get_property_type_display }}
+    </div>
+
+    <h3><a href="{{ property.get_absolute_url }}">{{ property.title }}</a></h3>
+
+    <p class="location">
+      <i class="fa-solid fa-location-dot"></i>
+      {{ property.city }}
+
+      {% if property.state %}
+        , {{ property.state }}
+      {% endif %}
+    </p>
+
+    <!-- Property Meta -->
+    <div class="property-meta">
+      <span>
+        <i class="fa-solid fa-bed"></i>
+        {{ property.bedrooms }} Beds
+      </span>
+
+      <span>
+        <i class="fa-solid fa-bath"></i>
+        {{ property.bathrooms|floatformat:'-1' }} Baths
+      </span>
+
+      <span>
+        <i class="fa-solid fa-ruler-combined"></i>
+        {{ property.area_sqft }} Sq Ft
+      </span>
+    </div>
+
+    <!-- Price -->
+    <strong class="card-price">
+      <i class="fa-solid fa-indian-rupee-sign"></i>
+      {{ property.price|floatformat:0 }}
+    </strong>
+  </div>
 </article>

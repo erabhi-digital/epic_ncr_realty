@@ -1,11 +1,13 @@
+{% load static %}
 <footer class="footer">
   <div class="container footer-grid">
     <div>
-      <a class="brand footer-brand" href="{% url 'home' %}">Modern<span>Estate</span></a>
-
+      <a class="brand footer-brand" href="{% url 'home' %}" style="display: flex; align-items: center; gap: 10px;">
+        <img src="{% static 'img/logo.png' %}" alt="Epic NCR Realty Logo" class="logo" width="32" height="32" style="object-fit: contain;" />
+        <h6 style="padding: 0; margin: 0; font-size: 18px;">EPICNCR<span>REALTY</span></h6>
+      </a>
       <p>Discover exceptional homes and properties designed for modern living.</p>
-
-      {% include "inc/social.html" %}
+      {% include 'inc/social.html' %}
     </div>
 
     <div>

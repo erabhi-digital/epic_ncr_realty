@@ -1,42 +1,176 @@
 {% extends 'base.html' %}
+
 {% block title %}
   {{ property.title }} | ModernEstate
 {% endblock %}
+
 {% block content %}
-  <div class="container breadcrumb">Home · Properties · {{ property.title }}</div>
+  <div class="container breadcrumb">
+    <i class="fa-solid fa-house"></i>
+    Home
+    <i class="fa-solid fa-chevron-right"></i>
+    Properties
+    <i class="fa-solid fa-chevron-right"></i>
+    {{ property.title }}
+  </div>
+
   <section class="section container detail">
+    <!-- Property Header -->
     <div class="detail-head">
       <div>
-        <span class="kicker">{{ property.property_type|upper }} · {{ property.listing_type|upper }}</span><h1>{{ property.title }}</h1><p>⌖ {{ property.address }}, {{ property.city }}</p>
+        <span class="kicker">
+          <i class="fa-solid fa-building"></i>
+          {{ property.property_type|upper }}
+          ·
+          <i class="fa-solid fa-tag"></i>
+          {{ property.listing_type|upper }}
+        </span>
+
+        <h1>{{ property.title }}</h1>
+
+        <p>
+          <i class="fa-solid fa-location-dot"></i>
+          {{ property.address }}, {{ property.city }}
+          {% if property.state %}
+            , {{ property.state }}
+          {% endif %}
+        </p>
       </div>
+
       <div class="price">
-        ₹{{ property.price|floatformat:0 }}<small>{% if property.listing_type == 'rent' %} / month{% endif %}</small>
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+        {{ property.price|floatformat:0 }}
+
+        {% if property.listing_type == 'rent' %}
+          <small>/ month</small>
+        {% endif %}
       </div>
     </div>
+
+    <!-- Property Gallery -->
     <div class="gallery">
-      <div class="gallery-main"></div>
-      <div class="gallery-side">
-        <div></div>
-        <div></div>
+      <div class="gallery-main">
+        {% if images %}
+          <img src="{{ images.0.image.url }}" alt="{{ images.0.alt_text|default:property.title }}" />
+        {% else %}
+          <div class="gallery-empty">
+            <i class="fa-solid fa-image"></i>
+            <span>No property image available</span>
+          </div>
+        {% endif %}
       </div>
-    </div>
-    <div class="detail-grid">
-      <div>
-        <div class="facts">
-          <span><b>{{ property.bedrooms }}</b> Bedrooms</span><span><b>{{ property.bathrooms|floatformat:'-1' }}</b> Bathrooms</span><span><b>{{ property.area_sqft }}</b> Sq Ft</span>
-        </div><h2>About This Property</h2><p>{{ property.description|linebreaks }}</p><h3>Features</h3><div class="feature-list">
-          <span>✓ Swimming Pool</span><span>✓ Modern Kitchen</span><span>✓ Home Theater</span><span>✓ Smart Home</span><span>✓ Security System</span>
+
+      <div class="gallery-side">
+        <div>
+          {% if images|length > 1 %}
+            <img src="{{ images.1.image.url }}" alt="{{ images.1.alt_text|default:property.title }}" />
+          {% else %}
+            <i class="fa-regular fa-image"></i>
+          {% endif %}
+        </div>
+
+        <div>
+          {% if images|length > 2 %}
+            <img src="{{ images.2.image.url }}" alt="{{ images.2.alt_text|default:property.title }}" />
+          {% else %}
+            <i class="fa-regular fa-image"></i>
+          {% endif %}
         </div>
       </div>
+    </div>
+
+    <!-- Property Information -->
+    <div class="detail-grid">
+      <div>
+        <!-- Property Facts -->
+        <div class="facts">
+          <span>
+            <i class="fa-solid fa-bed"></i>
+            <b>{{ property.bedrooms }}</b>
+            Bedrooms
+          </span>
+
+          <span>
+            <i class="fa-solid fa-bath"></i>
+            <b>{{ property.bathrooms|floatformat:'-1' }}</b>
+            Bathrooms
+          </span>
+
+          <span>
+            <i class="fa-solid fa-ruler-combined"></i>
+            <b>{{ property.area_sqft }}</b>
+            Sq Ft
+          </span>
+        </div>
+
+        <!-- About Property -->
+        <h2>
+          <i class="fa-solid fa-house"></i>
+          About This Property
+        </h2>
+
+        <p>{{ property.description|linebreaks }}</p>
+
+        <!-- Features -->
+        <h3>
+          <i class="fa-solid fa-list-check"></i>
+          Features
+        </h3>
+
+        <div class="feature-list">
+          <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Swimming Pool
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Modern Kitchen
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Home Theater
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Smart Home
+          </span>
+
+          <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Security System
+          </span>
+        </div>
+      </div>
+
+      <!-- Schedule Visit -->
       <aside class="visit-card">
-        <h3>Schedule a Visit</h3><form method="post" action="{% url 'contact' %}">
+        <h3>
+          <i class="fa-regular fa-calendar-check"></i>
+          Schedule a Visit
+        </h3>
+
+        <form method="post" action="{% url 'contact' %}">
           {% csrf_token %}
+
           <input name="name" placeholder="Your Name" required />
+
           <input type="email" name="email" placeholder="Your Email" required />
+
           <input name="phone" placeholder="Your Phone" />
+
           <input name="subject" value="Visit: {{ property.title }}" />
+
           <textarea name="message" placeholder="Message" required></textarea>
-          <input type="hidden" name="property_id" value="{{ property.id }}" /><button class="btn full">Send Request</button>
+
+          <input type="hidden" name="property_id" value="{{ property.id }}" />
+
+          <button class="btn full" type="submit">
+            <i class="fa-solid fa-paper-plane"></i>
+            Send Request
+          </button>
         </form>
       </aside>
     </div>
