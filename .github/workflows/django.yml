@@ -28,21 +28,6 @@ jobs:
             echo "Pulling latest code..."
             git pull origin main
 
-            echo "Activating virtual environment..."
-            source /home/erabhidigital/env/bin/activate
-
-            echo "Installing requirements..."
-            pip install -r requirements.txt
-
-            echo "Running Django checks..."
-            python manage.py check
-
-            echo "Running migrations..."
-            python manage.py migrate --noinput
-
-            echo "Collecting static files..."
-            python manage.py collectstatic --noinput
-
             echo "Deployment completed successfully!"
 
       - name: Reload web app via PythonAnywhere API
