@@ -2,11 +2,13 @@ name: Deploy to PythonAnywhere
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Pull latest code on PythonAnywhere
         uses: appleboy/ssh-action@v1.0.3
@@ -15,14 +17,17 @@ jobs:
           username: ${{ secrets.PA_USERNAME }}
           key: ${{ secrets.PA_SSH_PRIVATE_KEY }}
           port: 22
+
           script: |
+            set -e
+
             cd /home/erabhidigital/epic_ncr_realty
+
             git pull origin main
-            # Uncomment if your dependencies changed:
-            # pip install -r requirements.txt --user
 
       - name: Reload web app via PythonAnywhere API
         run: |
-          curl -X POST \
+          curl --fail --silent --show-error \
+            -X POST \
             -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
             https://www.pythonanywhere.com/api/v0/user/erabhidigital/webapps/www.epicncrrealty.com/reload/
