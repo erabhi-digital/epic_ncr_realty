@@ -1,3 +1,4 @@
+
 name: Deploy to PythonAnywhere
 
 on:
@@ -10,27 +11,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Pull latest code on PythonAnywhere
+      - name: Deploy to PythonAnywhere
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.PA_HOST }}
           username: ${{ secrets.PA_USERNAME }}
           key: ${{ secrets.PA_SSH_PRIVATE_KEY }}
           port: 22
-
           script: |
             set -e
 
+            echo "Starting deployment..."
+
             cd /home/erabhidigital/epic_ncr_realty
 
+            echo "Pulling latest code..."
             git pull origin main
+
+            echo "Activating virtual environment..."
+            source /home/erabhidigital/env/bin/activate
+
+            echo "Installing requirements..."
             pip install -r requirements.txt
 
+            echo "Running Django checks..."
+            python manage.py check
 
+            echo "Running migrations..."
+            python manage.py migrate --noinput
+
+            echo "Collecting static files..."
+            python manage.py collectstatic --noinput
+
+            echo "Deployment completed successfully!"
 
       - name: Reload web app via PythonAnywhere API
         run: |
           curl --fail --silent --show-error \
             -X POST \
             -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-            https://www.pythonanywhere.com/api/v0/user/erabhidigital/webapps/www.epicncrrealty.com/reload/
+            "https://www.pythonanywhere.com/api/v0/user/erabhidigital/webapps/www.epicncrrealty.com/reload/"
+
+          echo "PythonAnywhere web app reloaded successfully."
