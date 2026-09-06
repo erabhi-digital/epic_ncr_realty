@@ -205,37 +205,37 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-# =========================================================
-# STATIC FILE STORAGE
-# =========================================================
-# Compressed + hashed filenames in production for cache-busting
-# and smaller payloads. Plain storage in development so you don't
-# need to run collectstatic on every change.
+# # =========================================================
+# # STATIC FILE STORAGE
+# # =========================================================
+# # Compressed + hashed filenames in production for cache-busting
+# # and smaller payloads. Plain storage in development so you don't
+# # need to run collectstatic on every change.
 
-if IS_PRODUCTION:
-    STORAGES = {
-        "default": {
-            "BACKEND": "django.core.files.storage.FileSystemStorage",
-        },
-        "staticfiles": {
-            "BACKEND": (
-                "whitenoise.storage."
-                "CompressedManifestStaticFilesStorage"
-            ),
-        },
-    }
-else:
-    STORAGES = {
-        "default": {
-            "BACKEND": "django.core.files.storage.FileSystemStorage",
-        },
-        "staticfiles": {
-            "BACKEND": (
-                "django.contrib.staticfiles.storage."
-                "StaticFilesStorage"
-            ),
-        },
-    }
+# if IS_PRODUCTION:
+#     STORAGES = {
+#         "default": {
+#             "BACKEND": "django.core.files.storage.FileSystemStorage",
+#         },
+#         "staticfiles": {
+#             "BACKEND": (
+#                 "whitenoise.storage."
+#                 "CompressedManifestStaticFilesStorage"
+#             ),
+#         },
+#     }
+# else:
+#     STORAGES = {
+#         "default": {
+#             "BACKEND": "django.core.files.storage.FileSystemStorage",
+#         },
+#         "staticfiles": {
+#             "BACKEND": (
+#                 "django.contrib.staticfiles.storage."
+#                 "StaticFilesStorage"
+#             ),
+#         },
+#     }
 
 
 # =========================================================
