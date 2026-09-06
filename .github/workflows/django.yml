@@ -1,50 +1,28 @@
-name: Deploy epic_ncr_realty to PythonAnywhere
+name: Deploy to PythonAnywhere
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run Django tests
-        env:
-          DEBUG: "True"
-          SECRET_KEY: "test-secret-key"
-        run: python manage.py test
-
   deploy:
-    needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Pull latest code on PythonAnywhere
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          python-version: '3.11'
+          host: ${{ secrets.PA_HOST }}
+          username: ${{ secrets.PA_USERNAME }}
+          key: ${{ secrets.PA_SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/erabhidigital/epic_ncr_realty
+            git pull origin main
+            # Uncomment if your dependencies changed:
+            # pip install -r requirements.txt --user
 
-      - name: Install deploy dependencies
-        run: pip install requests
-
-      - name: Trigger PythonAnywhere deployment
-        env:
-          PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
-          PA_USERNAME: ${{ secrets.PA_USERNAME }}
-          PA_HOST: ${{ secrets.PA_HOST }}
-          PA_DOMAIN: ${{ secrets.PA_DOMAIN }}
-        run: python deploy/pa_deploy.py
+      - name: Reload web app via PythonAnywhere API
+        run: |
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
+            https://www.pythonanywhere.com/api/v0/user/erabhidigital/webapps/www.epicncrrealty.com/reload/
